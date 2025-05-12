@@ -1,0 +1,33 @@
+body {
+    display: flex; /* Convierte el body en un contenedor flexible */
+    justify-content: center; /* Centra horizontalmente los elementos hijos */
+    align-items: center; /* Centra verticalmente los elementos hijos */
+    min-height: 50vh; /* Asegura que el body ocupe al menos el 100% de la altura de la ventana */
+    background-color: #f4f6f6;
+    margin: 0; /* Elimina el margen predeterminado del body para un centrado preciso */
+div {
+    border: 4px solid #ccc; /* Agrega un borde de 1 píxel de grosor, sólido y de color gris claro (#ccc) */
+    padding: 3px; /* Añade un espacio interno de 20 píxeles alrededor del contenido */
+    border-radius: 5px; /* Opcional: redondea las esquinas del cuadro con un radio de 5 píxeles */
+    background-color: #fbfcfc; /* Opcional: añade un color de fondo gris muy claro */
+    width: 400px; /* El ancho se ajustará al contenido */
+    max-width: 400px;
+    margin-top: 100px;    /* Añade un margen superior de 20 píxeles */
+    margin-bottom: 5px; /* Añade un margen inferior de 20 píxeles */
+    margin-left: auto;   /* Centra horizontalmente si el ancho es menor que el contenedor */
+    margin-right: auto;  /* Centra horizontalmente si el ancho es menor que el contenedor */
+button {
+    background-color: #87CEEB; /* Celeste (Sky Blue) */
+    color: white;             /* Letras blancas */
+    padding: 10px 50px;       /* Añade un poco de espacio interno para que el botón se vea mejor */
+    border: none;             /* Elimina el borde predeterminado del botón */
+    border-radius: 5px;       /* Opcional: redondea las esquinas del botón */
+    cursor: pointer;          /* Cambia el cursor al pasar por encima para indicar que es interactivo */
+    font-size 70px;  /* Opcional: ajusta el tamaño de la fuente */
+
+
+}
+
+}
+}
+}

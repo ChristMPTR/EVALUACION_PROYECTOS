@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Nombres</title>
+    <link rel="stylesheet" href="/static/style2.css">
+    <style>
+        #resultadoNombres {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="formularioNombres">
+            <label for="nombre1">Nombre 1:</label><br>
+            <input type="text" name="nombre1" id="nombre1" required><br><br>
+
+            <label for="nombre2">Nombre 2:</label><br>
+            <input type="text" name="nombre2" id="nombre2" required><br><br>
+
+            <label for="nombre3">Nombre 3:</label><br>
+            <input type="text" name="nombre3" id="nombre3" required><br><br>
+
+            <button type="button" onclick="encontrarNombreMasLargo()">Enviar</button>
+        </form>
+        <div id="resultadoNombres"></div>
+    </div>
+    <script>
+        function encontrarNombreMasLargo() {
+            const nombre1 = document.getElementById('nombre1').value;
+            const nombre2 = document.getElementById('nombre2').value;
+            const nombre3 = document.getElementById('nombre3').value;
+            const resultadoDiv = document.getElementById('resultadoNombres');
+
+            const nombres = [nombre1, nombre2, nombre3];
+            let nombreMasLargo = '';
+            let longitudMasLarga = 0;
+
+            for (const nombre of nombres) {
+                const longitud = nombre.length;
+                if (longitud > longitudMasLarga) {
+                    longitudMasLarga = longitud;
+                    nombreMasLargo = nombre;
+                }
+            }
+
+            if (nombreMasLargo) {
+                resultadoDiv.textContent = `El nombre con mayor cantidad de caracteres es: ${nombreMasLargo}`;
+                const longitudParrafo = document.createElement('p');
+                longitudParrafo.textContent = `El nombre tiene: ${longitudMasLarga} caracteres.`;
+                resultadoDiv.appendChild(longitudParrafo);
+            } else {
+                resultadoDiv.textContent = "Por favor, ingresa los tres nombres.";
+            }
+        }
+    </script>
+</body>
+</html>

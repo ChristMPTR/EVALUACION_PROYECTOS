@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Notas</title>
+    <link rel="stylesheet" href="/static/style1.css">
+    <style>
+        #resultado {
+            display: none; /* Oculta el div de resultado original */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Formulario de Notas</h3>
+        <form id="formularioNotas">
+            <label for="nota1">Nota 1:</label><br>
+            <input type="number" step="0.01" name="nota1" id="nota1" required><br><br>
+
+            <label for="nota2">Nota 2:</label><br>
+            <input type="number" step="0.01" name="nota2" id="nota2" required><br><br>
+
+            <label for="nota3">Nota 3:</label><br>
+            <input type="number" step="0.01" name="nota3" id="nota3" required><br><br>
+
+            <label for="asistencia">Asistencia (%)</label><br>
+            <input type="number" step="0.01" name="asistencia" id="asistencia" min="0" max="100" required><br><br>
+            <button type="button" onclick="calcularResultado()">Enviar</button><br><br>
+        </form>
+        <div id="resultado"></div>
+    </div>
+    <script>
+        function calcularResultado() {
+            const nota1Input = document.getElementById('nota1');
+            const nota2Input = document.getElementById('nota2');
+            const nota3Input = document.getElementById('nota3');
+            const asistenciaInput = document.getElementById('asistencia');
+            const resultadoDiv = document.getElementById('resultado');
+
+            const nota1 = parseFloat(nota1Input.value);
+            const nota2 = parseFloat(nota2Input.value);
+            const nota3 = parseFloat(nota3Input.value);
+            const asistencia = parseFloat(asistenciaInput.value);
+
+            if (isNaN(nota1) || nota1 < 10 || nota1 > 70) {
+                alert("Ingrese una nota válida para la Nota 1 (entre 10 y 70).");
+                return;
+            }
+            if (isNaN(nota2) || nota2 < 10 || nota2 > 70) {
+                alert("Ingrese una nota válida para la Nota 2 (entre 10 y 70).");
+                return;
+            }
+            if (isNaN(nota3) || nota3 < 10 || nota3 > 70) {
+                alert("Ingrese una nota válida para la Nota 3 (entre 10 y 70).");
+                return;
+            }
+
+            const promedio = (nota1 + nota2 + nota3) / 3;
+            const aprobado = promedio >= 40 && asistencia >= 75;
+
+            const promedioDiv = document.createElement('div');
+            promedioDiv.textContent = `Promedio: ${promedio.toFixed(2)}`;
+            nota3Input.parentNode.insertBefore(promedioDiv, nota3Input.nextSibling);
+
+            const resultadoTexto = document.createElement('div');
+            if (aprobado) {
+                resultadoTexto.textContent = "¡Aprobado!";
+            } else {
+                resultadoTexto.textContent = "Reprobado.";
+            }
+            const enviarButton = document.querySelector('button');
+            enviarButton.parentNode.insertBefore(resultadoTexto, enviarButton.nextSibling);
+
+            // Opcionalmente, puedes limpiar el div de resultado original si ya no lo necesitas
+            resultadoDiv.textContent = '';
+        }
+    </script>
+
+</body>
+</html>
