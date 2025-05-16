@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <link rel="stylesheet" href="/static/ejercicio1.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Calculo de Compras</h2>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" min="0" required>
+
+        <label for="cantidad">Cantidad de tarros:</label>
+        <input type="number" id="cantidad" min="1" required>
+
+        <button onclick="calcularTotal()">Calcular </button>
+
+        <div id="resultado" style="display: none;">
+            <p>Nombre del cliente: <span id="nombre_compra"></span></p>
+            <p>Total sin descuento: $<span id="total_sin_descuento"></span></p>
+            <p>El descuento es: $<span id="monto_descuento"></span></p>
+            <p>El total a pagar es de: $<span id="total_con_descuento"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function calcularTotal() {
+            const nombre = document.getElementById('nombre').value;
+            const edad = parseInt(document.getElementById('edad').value);
+            const cantidad = parseInt(document.getElementById('cantidad').value);
+            const precioPorTarro = 9000;
+            const totalSinDescuento = cantidad * precioPorTarro;
+            let descuento = 0;
+            let montoDescuento = 0;
+
+            if (edad >= 18 && edad <= 30) {
+                descuento = 0.15; // 15% de descuento
+            } else if (edad > 30) {
+                descuento = 0.25; // 25% de descuento
+            }
+
+            const totalConDescuento = totalSinDescuento * (1 - descuento);
+            montoDescuento = totalSinDescuento * descuento; // Calculamos el monto del descuento
+
+            document.getElementById('nombre_compra').textContent = nombre;
+            document.getElementById('total_sin_descuento').textContent = totalSinDescuento.toLocaleString('es-CL');
+            document.getElementById('monto_descuento').textContent = montoDescuento.toLocaleString('es-CL'); // Asignamos el valor del descuento
+            document.getElementById('total_con_descuento').textContent = totalConDescuento.toLocaleString('es-CL');
+            document.getElementById('resultado').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
